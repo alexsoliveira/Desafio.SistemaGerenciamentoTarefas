@@ -1,0 +1,13 @@
+﻿version: '3.4'
+
+services:
+  mssql-server:
+    container_name: desafio.sisgertarefas.database.tarefa-e2e
+    hostname: tarefadb-e2e
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      MSSQL_SA_PASSWORD: "SqlServer2019!"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports:
+        - "1450:1433"
