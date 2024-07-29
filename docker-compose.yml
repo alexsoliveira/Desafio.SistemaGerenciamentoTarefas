@@ -6,6 +6,46 @@ networks:
     driver: bridge
   
 services:
+  desafio.identidade.api:
+    image: desafio-identidade-api:latest        
+    container_name: desafio.identidade.api
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=desafio.sisgertarefas.database.tarefa, 1433;Initial Catalog=tarefa;User Id=SA;Password=SqlServer2019!;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_HTTPS_PORTS=5001    
+      - ASPNETCORE_URLS=http://*:5000
+    build:
+      context: ./src
+      dockerfile: ./Desafio.Identidade.Api/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    depends_on:
+      - mssql-server
+    networks:
+      - dev
+
+  desafio.sisgertarefas.api:
+    image: desafio-sisgertarefas-api:latest        
+    container_name: desafio.sisgertarefas.api
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=desafio.sisgertarefas.database.tarefa, 1433;Initial Catalog=tarefa;User Id=SA;Password=SqlServer2019!;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5002
+      - ASPNETCORE_HTTPS_PORTS=5003   
+      - ASPNETCORE_URLS=http://*:5002
+    build:
+      context: ./src
+      dockerfile: ./Desafio.SisGerTarefas.Api/Dockerfile
+    ports:
+      - "5002:5002"
+      - "5003:5003"
+    depends_on:
+      - mssql-server
+    networks:
+      - dev
+
   mssql-server:
     container_name: desafio.sisgertarefas.database.tarefa
     hostname: tarefadb
@@ -15,6 +55,6 @@ services:
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Developer"
     ports:
-        - "1433:1433"
+      - "1433:1433"
     networks:
-        - dev
+      - dev
