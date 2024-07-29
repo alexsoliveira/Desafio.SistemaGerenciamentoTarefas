@@ -36,6 +36,11 @@ namespace Desafio.SisGerTarefas.Infra.Data.EF.Migrations
                         .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 

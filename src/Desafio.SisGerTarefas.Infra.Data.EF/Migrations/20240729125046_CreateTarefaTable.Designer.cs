@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Desafio.SisGerTarefas.Infra.Data.EF.Migrations
 {
     [DbContext(typeof(TarefaDbContext))]
-    [Migration("20240727135132_CreateTarefaTable")]
+    [Migration("20240729125046_CreateTarefaTable")]
     partial class CreateTarefaTable
     {
         /// <inheritdoc />
@@ -38,6 +38,11 @@ namespace Desafio.SisGerTarefas.Infra.Data.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdUsuario")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

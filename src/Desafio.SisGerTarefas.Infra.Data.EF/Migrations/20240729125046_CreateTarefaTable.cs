@@ -16,6 +16,7 @@ namespace Desafio.SisGerTarefas.Infra.Data.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdUsuario = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     Titulo = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
                     DataVencimento = table.Column<DateTime>(type: "datetime2", nullable: false),

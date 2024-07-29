@@ -10,6 +10,8 @@ namespace Desafio.SisGerTarefas.Infra.Data.EF.Configurations
         public void Configure(EntityTypeBuilder<Tarefa> builder)
         {
             builder.HasKey(tarefa => tarefa.Id);
+            builder.Property(tarefa => tarefa.IdUsuario)
+                .HasMaxLength(450);
             builder.Property(tarefa => tarefa.Titulo)
                 .HasMaxLength(255);
             builder.Property(tarefa => tarefa.Descricao)
