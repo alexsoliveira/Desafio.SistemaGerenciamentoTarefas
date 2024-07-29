@@ -7,24 +7,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D724D9E7-421
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B427FB70-151C-4E1B-A8C9-B7FCB4E3A291}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.SisGerTarefas.UnitTests", "tests\Desafio.SisGerTarefas.UnitTests\Desafio.SisGerTarefas.UnitTests.csproj", "{862256C7-6477-471C-8110-FE127B0F69FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.SisGerTarefas.UnitTests", "tests\Desafio.SisGerTarefas.UnitTests\Desafio.SisGerTarefas.UnitTests.csproj", "{862256C7-6477-471C-8110-FE127B0F69FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.SisGerTarefas.Domain", "src\Desafio.SisGerTarefas.Domain\Desafio.SisGerTarefas.Domain.csproj", "{659CA478-46F2-4B21-BED4-88DF79D2CAA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.SisGerTarefas.Domain", "src\Desafio.SisGerTarefas.Domain\Desafio.SisGerTarefas.Domain.csproj", "{659CA478-46F2-4B21-BED4-88DF79D2CAA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.SisGerTarefas.Application", "src\Desafio.SisGerTarefas.Application\Desafio.SisGerTarefas.Application.csproj", "{C51A080B-91A8-491A-853C-FD5C46AF5351}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.SisGerTarefas.Application", "src\Desafio.SisGerTarefas.Application\Desafio.SisGerTarefas.Application.csproj", "{C51A080B-91A8-491A-853C-FD5C46AF5351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.SisGerTarefas.Api", "src\Desafio.SisGerTarefas.Api\Desafio.SisGerTarefas.Api.csproj", "{70FF06D3-9590-4DD7-9A90-F1690647F7BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.SisGerTarefas.Api", "src\Desafio.SisGerTarefas.Api\Desafio.SisGerTarefas.Api.csproj", "{70FF06D3-9590-4DD7-9A90-F1690647F7BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.SisGerTarefas.IntegrationTests", "tests\Desafio.SisGerTarefas.IntegrationTests\Desafio.SisGerTarefas.IntegrationTests.csproj", "{2A133B9C-9E1F-430C-A254-EA0D4034701B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.SisGerTarefas.IntegrationTests", "tests\Desafio.SisGerTarefas.IntegrationTests\Desafio.SisGerTarefas.IntegrationTests.csproj", "{2A133B9C-9E1F-430C-A254-EA0D4034701B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.SisGerTarefas.Infra.Data.EF", "src\Desafio.SisGerTarefas.Infra.Data.EF\Desafio.SisGerTarefas.Infra.Data.EF.csproj", "{D988ABA3-EEA7-4DBF-8296-3603B95A6881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.SisGerTarefas.Infra.Data.EF", "src\Desafio.SisGerTarefas.Infra.Data.EF\Desafio.SisGerTarefas.Infra.Data.EF.csproj", "{D988ABA3-EEA7-4DBF-8296-3603B95A6881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.SisGerTarefas.EndTEndTests", "tests\Desafio.SisGerTarefas.EndTEndTests\Desafio.SisGerTarefas.EndTEndTests.csproj", "{FE8837AB-8B8E-47D1-80B7-6BB47939A17F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio.SisGerTarefas.EndTEndTests", "tests\Desafio.SisGerTarefas.EndTEndTests\Desafio.SisGerTarefas.EndTEndTests.csproj", "{FE8837AB-8B8E-47D1-80B7-6BB47939A17F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{FFC8677B-F504-4592-BACB-B1CE3128A3A7}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Identidade.Api", "src\Desafio.Identidade.Api\Desafio.Identidade.Api.csproj", "{2CB0B9CC-5C36-451C-BD46-4E6842987695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.WebAPI.Core", "src\Desafio.Core\Desafio.WebAPI.Core.csproj", "{6A84AD0D-FE31-4731-AEFA-DD473C9CDC51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +64,14 @@ Global
 		{FE8837AB-8B8E-47D1-80B7-6BB47939A17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE8837AB-8B8E-47D1-80B7-6BB47939A17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE8837AB-8B8E-47D1-80B7-6BB47939A17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB0B9CC-5C36-451C-BD46-4E6842987695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB0B9CC-5C36-451C-BD46-4E6842987695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB0B9CC-5C36-451C-BD46-4E6842987695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB0B9CC-5C36-451C-BD46-4E6842987695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A84AD0D-FE31-4731-AEFA-DD473C9CDC51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A84AD0D-FE31-4731-AEFA-DD473C9CDC51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A84AD0D-FE31-4731-AEFA-DD473C9CDC51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A84AD0D-FE31-4731-AEFA-DD473C9CDC51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +84,8 @@ Global
 		{2A133B9C-9E1F-430C-A254-EA0D4034701B} = {B427FB70-151C-4E1B-A8C9-B7FCB4E3A291}
 		{D988ABA3-EEA7-4DBF-8296-3603B95A6881} = {D724D9E7-4217-4600-B06C-49CAE6200772}
 		{FE8837AB-8B8E-47D1-80B7-6BB47939A17F} = {B427FB70-151C-4E1B-A8C9-B7FCB4E3A291}
+		{2CB0B9CC-5C36-451C-BD46-4E6842987695} = {D724D9E7-4217-4600-B06C-49CAE6200772}
+		{6A84AD0D-FE31-4731-AEFA-DD473C9CDC51} = {D724D9E7-4217-4600-B06C-49CAE6200772}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FE85F71-FAD0-47F3-980C-DFF073451DEE}
