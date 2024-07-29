@@ -5,13 +5,15 @@ namespace Desafio.SisGerTarefas.Domain.Entity
 {
     public class Tarefa : AggregateRoot
     {
+        public string IdUsuario { get; private set; }
         public string Titulo { get; private set; }
         public string Descricao { get; private set; }
         public DateTime DataVencimento { get; private set; }
         public Status Status { get; private set; }
         
-        public Tarefa(string titulo, string descricao) 
-        {
+        public Tarefa(string idUsuario, string titulo, string descricao) 
+        {           
+            IdUsuario = idUsuario;
             Titulo = titulo;
             Descricao = descricao;
             DataVencimento = DateTime.Now;
@@ -20,8 +22,9 @@ namespace Desafio.SisGerTarefas.Domain.Entity
             Validate();
         }
 
-        public void Update(string titulo, string? descricao = null, DateTime? data = null, Status? status = null)
+        public void Update(string idUsuario, string titulo, string? descricao = null, DateTime? data = null, Status? status = null)
         {
+            IdUsuario = idUsuario;
             Titulo = titulo;
             Descricao = descricao ?? Descricao;
             DataVencimento = data ?? DataVencimento;
@@ -32,6 +35,8 @@ namespace Desafio.SisGerTarefas.Domain.Entity
 
         private void Validate()
         {
+            DomainValidation.NotNullOrEmpty(IdUsuario, nameof(IdUsuario));
+
             DomainValidation.NotNullOrEmpty(Titulo, nameof(Titulo));
             DomainValidation.MinLength(Titulo, 3, nameof(Titulo));
             DomainValidation.MaxLength(Titulo, 255, nameof(Titulo));
