@@ -30,7 +30,8 @@ namespace Desafio.SisGerTarefas.EndTEndTests.Api.Tarefa.CreateTarefa
             response.Should().NotBeNull();
             response!.StatusCode.Should().Be(HttpStatusCode.Created);
             output.Should().NotBeNull();
-            output!.Titulo.Should().Be(input.Titulo);
+            output!.IdUsuario.Should().Be(input.IdUsuario);
+            output.Titulo.Should().Be(input.Titulo);
             output.Descricao.Should().Be(input.Descricao);
             output.Status.Should().Be(input.Status);
             output.Id.Should().NotBeEmpty();
@@ -39,7 +40,8 @@ namespace Desafio.SisGerTarefas.EndTEndTests.Api.Tarefa.CreateTarefa
             var dbTarefa = await _fixture
                 .Persistence.GetById(output.Id);
             dbTarefa.Should().NotBeNull();
-            dbTarefa!.Titulo.Should().Be(input.Titulo);
+            dbTarefa!.IdUsuario.Should().Be(input.IdUsuario);
+            dbTarefa.Titulo.Should().Be(input.Titulo);
             dbTarefa.Descricao.Should().Be(input.Descricao);
             dbTarefa.Status.Should().Be(input.Status);
             dbTarefa.Id.Should().NotBeEmpty();

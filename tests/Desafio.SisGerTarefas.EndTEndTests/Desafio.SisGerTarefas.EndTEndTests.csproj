@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Desafio.Identidade.Api\Desafio.Identidade.Api.csproj" />
     <ProjectReference Include="..\..\src\Desafio.SisGerTarefas.Api\Desafio.SisGerTarefas.Api.csproj" />
     <ProjectReference Include="..\..\src\Desafio.SisGerTarefas.Infra.Data.EF\Desafio.SisGerTarefas.Infra.Data.EF.csproj" />
   </ItemGroup>

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Desafio.SisGerTarefas.EndTEndTests.Base
 {
-    public class BaseFixture
+    public class BaseFixture : IDisposable
     {
         protected Faker Faker { get; set; }
         public CustomWebApplicationFactory<Program> WebAppFactory { get; set; }
@@ -19,6 +19,7 @@ namespace Desafio.SisGerTarefas.EndTEndTests.Base
             Faker = new Faker("pt_BR");
             WebAppFactory = new CustomWebApplicationFactory<Program>();
             HttpClient = WebAppFactory.CreateClient();
+
             ApiClient = new ApiClient(HttpClient);
             var configuration = WebAppFactory.Services
                 .GetService(typeof(IConfiguration));
@@ -40,6 +41,11 @@ namespace Desafio.SisGerTarefas.EndTEndTests.Base
                 .Options                
             );
             return context;
+        }
+
+        public void Dispose()
+        {
+            WebAppFactory.Dispose();
         }
     }
 }

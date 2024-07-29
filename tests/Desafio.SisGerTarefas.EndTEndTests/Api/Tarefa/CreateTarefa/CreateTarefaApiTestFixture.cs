@@ -13,6 +13,7 @@ namespace Desafio.SisGerTarefas.EndTEndTests.Api.Tarefa.CreateTarefa
     {
         public CreateTarefaInput GetExampleInput()
             => new(
+                GetValidTarefaIdUsuario(),
                 GetValidTarefaTitulo(),
                 GetValidTarefaDescription()                
             );

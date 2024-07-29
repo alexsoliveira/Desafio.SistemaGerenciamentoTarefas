@@ -15,6 +15,13 @@ namespace Desafio.SisGerTarefas.EndTEndTests.Api.Tarefa.Common
             );
         }
 
+        public string GetValidTarefaIdUsuario()
+        {
+            var tarefaIdUsuario = Guid.NewGuid();
+
+            return tarefaIdUsuario.ToString();
+        }
+
         public string GetValidTarefaTitulo()
         {
             var tarefaTitulo = "";

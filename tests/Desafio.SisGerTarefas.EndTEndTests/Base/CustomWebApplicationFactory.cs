@@ -1,4 +1,5 @@
-﻿using Desafio.SisGerTarefas.Infra.Data.EF.Context;
+﻿using Desafio.Identidade.Api.Data;
+using Desafio.SisGerTarefas.Infra.Data.EF.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -29,14 +30,36 @@ namespace Desafio.SisGerTarefas.EndTEndTests.Base
             //});
            
             builder.UseEnvironment("EndToEndTest");
-            builder.ConfigureServices(services => {                               
-                var serviceProvider = services.BuildServiceProvider();
-                using var scope = serviceProvider.CreateScope();                
-                var context = scope.ServiceProvider
+            builder.ConfigureServices(services => {                
+                var serviceProviderTarefa = services.BuildServiceProvider();             
+
+                using var scopeTarefa = serviceProviderTarefa.CreateScope();
+                var contextTarefa = scopeTarefa.ServiceProvider
                     .GetService<TarefaDbContext>();
-                ArgumentNullException.ThrowIfNull(context);
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+                ArgumentNullException.ThrowIfNull(contextTarefa);
+                
+                contextTarefa.Database.EnsureDeleted();                
+                contextTarefa.Database.EnsureCreated();
+
+
+                //var serviceProviderIdentity = services.BuildServiceProvider();
+                //var serviceProviderTarefa = services.BuildServiceProvider();
+
+                //using var scopeIdentity = serviceProviderIdentity.CreateScope();
+                //var contextIdentity = scopeIdentity.ServiceProvider
+                //    .GetService<ApplicationDbContext>();
+                //ArgumentNullException.ThrowIfNull(contextIdentity);
+
+                //using var scopeTarefa = serviceProviderTarefa.CreateScope();
+                //var contextTarefa = scopeTarefa.ServiceProvider
+                //    .GetService<TarefaDbContext>();
+                //ArgumentNullException.ThrowIfNull(contextTarefa);
+
+                //contextIdentity.Database.EnsureDeleted();
+                //contextTarefa.Database.EnsureDeleted();
+
+                //contextIdentity.Database.EnsureCreated();
+                //contextTarefa.Database.EnsureCreated();                
             });            
 
             base.ConfigureWebHost(builder);
