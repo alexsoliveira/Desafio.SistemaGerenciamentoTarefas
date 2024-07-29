@@ -34,11 +34,13 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Application.UseCases.CreateTare
             var dbTarefa = await (_fixture.CreateDbContext(true))
                 .Tarefas.FindAsync(output.Id);
             dbTarefa.Should().NotBeNull();
-            dbTarefa!.Titulo.Should().Be(input.Titulo);
+            dbTarefa!.IdUsuario.Should().Be(input.IdUsuario);
+            dbTarefa.Titulo.Should().Be(input.Titulo);
             dbTarefa.Descricao.Should().Be(input.Descricao);
             dbTarefa.Status.Should().Be(input.Status);
             dbTarefa.DataVencimento.Should().Be(output.DataVencimento);
             output.Should().NotBeNull();
+            output.IdUsuario.Should().Be(input.IdUsuario);
             output.Titulo.Should().Be(input.Titulo);
             output.Descricao.Should().Be(input.Descricao);
             output.Status.Should().Be(input.Status);
@@ -58,6 +60,7 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Application.UseCases.CreateTare
                 unitOfWork
             );
             var input = new CreateTarefaInput(
+                _fixture.GetInput().IdUsuario,
                 _fixture.GetInput().Titulo
             );
             var output = await useCase.Handle(input, CancellationToken.None);
@@ -65,11 +68,13 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Application.UseCases.CreateTare
             var dbTarefa = await (_fixture.CreateDbContext(true))
                  .Tarefas.FindAsync(output.Id);
             dbTarefa.Should().NotBeNull();
-            dbTarefa!.Titulo.Should().Be(input.Titulo);
+            dbTarefa!.IdUsuario.Should().Be(input.IdUsuario);
+            dbTarefa.Titulo.Should().Be(input.Titulo);
             dbTarefa.Descricao.Should().Be("");
             dbTarefa.Status.Should().Be(Status.Pendente);
             dbTarefa.DataVencimento.Should().Be(output.DataVencimento);
             output.Should().NotBeNull();
+            output.IdUsuario.Should().Be(input.IdUsuario);
             output.Titulo.Should().Be(input.Titulo);
             output.Descricao.Should().Be("");
             output.Status.Should().Be(Status.Pendente);
@@ -90,6 +95,7 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Application.UseCases.CreateTare
             );
             var exampleInput = _fixture.GetInput();
             var input = new CreateTarefaInput(
+                exampleInput.IdUsuario,
                 exampleInput.Titulo,
                 exampleInput.Descricao
             );
@@ -98,11 +104,13 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Application.UseCases.CreateTare
             var dbTarefa = await (_fixture.CreateDbContext(true))
                  .Tarefas.FindAsync(output.Id);
             dbTarefa.Should().NotBeNull();
-            dbTarefa!.Titulo.Should().Be(input.Titulo);
+            dbTarefa!.IdUsuario.Should().Be(input.IdUsuario);
+            dbTarefa.Titulo.Should().Be(input.Titulo);
             dbTarefa.Descricao.Should().Be(input.Descricao);
             dbTarefa.Status.Should().Be(Status.Pendente);
             dbTarefa.DataVencimento.Should().Be(output.DataVencimento);
             output.Should().NotBeNull();
+            output.IdUsuario.Should().Be(input.IdUsuario);
             output.Titulo.Should().Be(input.Titulo);
             output.Descricao.Should().Be(input.Descricao);
             output.Status.Should().Be(Status.Pendente);

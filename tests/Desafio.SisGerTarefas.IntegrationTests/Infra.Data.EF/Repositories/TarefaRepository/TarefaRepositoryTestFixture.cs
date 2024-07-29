@@ -12,6 +12,13 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Infra.Data.EF.Repositories.Tare
     public class TarefaRepositoryTestFixture
         : BaseFixture
     {
+        public string GetValidTarefaIdUsuario()
+        {
+            var tarefaIdUsuario = Guid.NewGuid();
+
+            return tarefaIdUsuario.ToString();
+        }
+
         public string GetValidTarefaTitulo()
         {
             var tarefaName = "";
@@ -39,6 +46,7 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Infra.Data.EF.Repositories.Tare
 
         public Tarefa GetExampleTarefa()
         => new(
+            GetValidTarefaIdUsuario(),
             GetValidTarefaTitulo(),
             GetValidTarefaDescription()
         );

@@ -11,6 +11,13 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Infra.Data.EF.UnitOfWork
     public class UnitOfWorkTestFixture
         : BaseFixture
     {
+        public string GetValidTarefaIdUsuario()
+        {
+            var tarefaIdUsuario = Guid.NewGuid();
+
+            return tarefaIdUsuario.ToString();
+        }
+
         public string GetValidTarefaTitulo()
         {
             var tarefaName = "";
@@ -38,6 +45,7 @@ namespace Desafio.SisGerTarefas.IntegrationTests.Infra.Data.EF.UnitOfWork
 
         public Tarefa GetExampleTarefa()
         => new(
+            GetValidTarefaIdUsuario(),
             GetValidTarefaTitulo(),
             GetValidTarefaDescription()
         );
