@@ -1,5 +1,6 @@
 
 using Desafio.SisGerTarefas.Api.Configurations;
+using Desafio.WebAPI.Core.Services.Identidade;
 
 namespace Desafio.SisGerTarefas.Api
 {
@@ -16,7 +17,7 @@ namespace Desafio.SisGerTarefas.Api
             var app = builder.Build();
             app.UseDocumentation();
             app.UseHttpsRedirection();
-            app.UseAuthorization();
+            app.UseAuthConfiguration();
             app.MapControllers();
 
             app.Run();

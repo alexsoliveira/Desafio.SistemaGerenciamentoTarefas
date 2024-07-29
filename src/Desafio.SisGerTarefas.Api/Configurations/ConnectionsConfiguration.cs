@@ -1,6 +1,6 @@
 ﻿using Desafio.SisGerTarefas.Infra.Data.EF.Context;
+using Desafio.WebAPI.Core.Services.Identidade;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Desafio.SisGerTarefas.Api.Configurations
 {
@@ -31,6 +31,9 @@ namespace Desafio.SisGerTarefas.Api.Configurations
                     connectionString
                 )
             );
+
+            services.AddJwtConfiguration(configuration);
+
             return services;
         }
     }

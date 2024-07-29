@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Desafio.Core\Desafio.WebAPI.Core.csproj" />
     <ProjectReference Include="..\Desafio.SisGerTarefas.Infra.Data.EF\Desafio.SisGerTarefas.Infra.Data.EF.csproj" />
   </ItemGroup>
 
