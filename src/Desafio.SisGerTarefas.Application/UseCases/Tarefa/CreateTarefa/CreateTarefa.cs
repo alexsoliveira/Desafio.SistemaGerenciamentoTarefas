@@ -22,7 +22,8 @@ namespace Desafio.SisGerTarefas.Application.UseCases.Tarefa.CreateTarefa
             CreateTarefaInput input,
             CancellationToken cancellationToken
         ) {
-            var tarefa = new DomainEntity.Tarefa(input.Titulo, input.Descricao);
+            var tarefa = new DomainEntity.Tarefa(
+                input.IdUsuario.ToString(), input.Titulo, input.Descricao);
 
             await _tarefaRepository.Insert(tarefa,cancellationToken);
             await _unitOfWork.Commit(cancellationToken);
