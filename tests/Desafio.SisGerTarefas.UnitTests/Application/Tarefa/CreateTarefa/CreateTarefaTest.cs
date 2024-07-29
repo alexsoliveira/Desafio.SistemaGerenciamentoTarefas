@@ -42,10 +42,12 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.CreateTarefa
             );
 
             output.Should().NotBeNull();
+            output.Id.Should().NotBeEmpty();
+            output.IdUsuario.Should().NotBeEmpty();
+            output.IdUsuario.Should().Be(input.IdUsuario);
             output.Titulo.Should().Be(input.Titulo);
             output.Descricao.Should().Be(input.Descricao);
-            output.Status.Should().Be(input.Status);
-            output.Id.Should().NotBeEmpty();
+            output.Status.Should().Be(input.Status);            
             output.DataVencimento.Should().NotBeSameDateAs(default);            
         }
 
@@ -60,6 +62,7 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.CreateTarefa
                 unitOfWorkMock.Object
             );
             var input = new CreateTarefaInput(
+                _fixture.GetValidTarefaIdUsuario(),
                 _fixture.GetValidTarefaTitulo()
             );
             var output = await useCase.Handle(input, CancellationToken.None);
@@ -78,10 +81,12 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.CreateTarefa
             );
 
             output.Should().NotBeNull();
+            output.Id.Should().NotBeEmpty();
+            output.IdUsuario.Should().NotBeEmpty();
+            output.IdUsuario.Should().Be(input.IdUsuario);
             output.Titulo.Should().Be(input.Titulo);
             output.Descricao.Should().Be("");
-            output.Status.Should().Be(input.Status);
-            output.Id.Should().NotBeEmpty();
+            output.Status.Should().Be(input.Status);            
             output.DataVencimento.Should().NotBeSameDateAs(default);            
         }
 
@@ -96,6 +101,7 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.CreateTarefa
                 unitOfWorkMock.Object
             );
             var input = new CreateTarefaInput(
+                _fixture.GetValidTarefaIdUsuario(),
                 _fixture.GetValidTarefaTitulo(),
                 _fixture.GetValidTarefaDescricao()
             );
@@ -115,10 +121,12 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.CreateTarefa
             );
 
             output.Should().NotBeNull();
+            output.Id.Should().NotBeEmpty();
+            output.IdUsuario.Should().NotBeEmpty();
+            output.IdUsuario.Should().Be(input.IdUsuario);
             output.Titulo.Should().Be(input.Titulo);
             output.Descricao.Should().Be(input.Descricao);
-            output.Status.Should().Be(input.Status);
-            output.Id.Should().NotBeEmpty();
+            output.Status.Should().Be(input.Status);            
             output.DataVencimento.Should().NotBeSameDateAs(default);
         }
 

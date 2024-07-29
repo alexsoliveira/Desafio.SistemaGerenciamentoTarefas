@@ -19,17 +19,40 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var validTarefa = _tarefaTestFixture.GetValidTarefa();
             var datetimeBefore = DateTime.Now;
 
-            var tarefa = new DomainEntity.Tarefa(validTarefa.Titulo, validTarefa.Descricao);
+            var tarefa = new DomainEntity.Tarefa(
+                validTarefa.IdUsuario.ToString(), 
+                validTarefa.Titulo, 
+                validTarefa.Descricao);
             var datetimeAfter = DateTime.Now.AddSeconds(1);
 
             tarefa.Should().NotBeNull();
-            tarefa.Titulo.Should().Be(validTarefa.Titulo);
-            tarefa.Descricao.Should().Be(validTarefa.Descricao);
             tarefa.Id.Should().NotBeEmpty();
+            tarefa.IdUsuario.Should().NotBeEmpty();
+            tarefa.IdUsuario.Should().Be(validTarefa.IdUsuario);
+            tarefa.Titulo.Should().Be(validTarefa.Titulo);
+            tarefa.Descricao.Should().Be(validTarefa.Descricao);            
             tarefa.DataVencimento.Should().NotBeSameDateAs(default(DateTime));
             (tarefa.DataVencimento >= datetimeBefore).Should().BeTrue();
             (tarefa.DataVencimento <= datetimeAfter).Should().BeTrue();
             tarefa.Status.Should().Be(DomainEntity.Status.Pendente);            
+        }
+
+        [Theory(DisplayName = nameof(InstantiateErrorWhenIdUsuarioIsEmpty))]
+        [Trait("Domain", "Tarefa - Aggregates")]
+        [InlineData("")]
+        [InlineData("  ")]
+        [InlineData(null)]        
+        public void InstantiateErrorWhenIdUsuarioIsEmpty(string? idUsuario)
+        {
+            var validTarefa = _tarefaTestFixture.GetValidTarefa();
+
+            Action action =
+                () => new DomainEntity.Tarefa(
+                    idUsuario!, validTarefa.Titulo, validTarefa.Descricao);
+
+            action.Should()
+                .Throw<EntityValidationException>()
+                .WithMessage("IdUsuario should not be empty or null");
         }
 
         [Theory(DisplayName = nameof(InstantiateErrorWhenTituloIsEmpty))]
@@ -42,7 +65,8 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var validTarefa = _tarefaTestFixture.GetValidTarefa();
 
             Action action =
-                () => new DomainEntity.Tarefa(titulo!, validTarefa.Descricao);
+                () => new DomainEntity.Tarefa(
+                    validTarefa.IdUsuario.ToString(), titulo!, validTarefa.Descricao);
 
             action.Should()
                 .Throw<EntityValidationException>()
@@ -56,7 +80,8 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var validTarefa = _tarefaTestFixture.GetValidTarefa();
 
             Action action =
-                () => new DomainEntity.Tarefa(validTarefa.Titulo, null!);
+                () => new DomainEntity.Tarefa(
+                    validTarefa.IdUsuario.ToString(), validTarefa.Titulo, null!);
 
             action.Should()
                 .Throw<EntityValidationException>()
@@ -71,7 +96,8 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var validTarefa = _tarefaTestFixture.GetValidTarefa();
 
             Action action =
-                () => new DomainEntity.Tarefa(invalidTitulo, validTarefa.Descricao);
+                () => new DomainEntity.Tarefa(
+                    validTarefa.IdUsuario.ToString(), invalidTitulo, validTarefa.Descricao);
 
             action.Should()
                 .Throw<EntityValidationException>()
@@ -99,7 +125,8 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var invalidTitulo = string.Join(null, Enumerable.Range(1, 256).Select(_ => "a").ToArray());
 
             Action action =
-                () => new DomainEntity.Tarefa(invalidTitulo, validTarefa.Descricao);
+                () => new DomainEntity.Tarefa(
+                    validTarefa.IdUsuario.ToString(), invalidTitulo, validTarefa.Descricao);
 
             action.Should()
                 .Throw<EntityValidationException>()
@@ -114,7 +141,8 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var invalidDescription = string.Join(null, Enumerable.Range(1, 10_001).Select(_ => "a").ToArray());
 
             Action action =
-                () => new DomainEntity.Tarefa(validTarefa.Titulo, invalidDescription);
+                () => new DomainEntity.Tarefa(
+                    validTarefa.IdUsuario.ToString(), validTarefa.Titulo, invalidDescription);
 
             action.Should()
                 .Throw<EntityValidationException>()
@@ -131,11 +159,14 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var newStatus = DomainEntity.Status.Concluido;
 
             validTarefa.Update(
+                tarefaWithNewValue.IdUsuario.ToString(),
                 tarefaWithNewValue.Titulo, 
                 descricao: tarefaWithNewValue.Descricao, 
-                data: newData, 
-                status: newStatus);
+                data: newData,
+            status: newStatus);
 
+            validTarefa.IdUsuario.Should().NotBeEmpty();
+            validTarefa.IdUsuario.Should().Be(tarefaWithNewValue.IdUsuario);
             validTarefa.Titulo.Should().Be(tarefaWithNewValue.Titulo);
             validTarefa.Descricao.Should().Be(tarefaWithNewValue.Descricao);
             validTarefa.DataVencimento.Should().Be(newData);
@@ -149,10 +180,12 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
             var tarefaValida = _tarefaTestFixture.GetValidTarefa();
 
             var novoTitulo = _tarefaTestFixture.GetValidTarefaTitulo();
+            var idUsuariAtual = tarefaValida.IdUsuario.ToString();
             var descricaoAtual = tarefaValida.Descricao;
 
-            tarefaValida.Update(novoTitulo);
+            tarefaValida.Update(idUsuariAtual, novoTitulo);
 
+            tarefaValida.IdUsuario.Should().Be(idUsuariAtual);
             tarefaValida.Titulo.Should().Be(novoTitulo);
             tarefaValida.Descricao.Should().Be(descricaoAtual);            
         }
@@ -164,10 +197,10 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
         [InlineData("   ")]
         public void UpdateErrorWhenTituloIsEmpty(string titulo)
         {
-            var tarefaValida = _tarefaTestFixture.GetValidTarefa();
+            var tarefaValida = _tarefaTestFixture.GetValidTarefa();           
 
             Action action =
-                () => tarefaValida.Update(titulo!);
+                () => tarefaValida.Update(tarefaValida.IdUsuario.ToString(), titulo!);
 
             action.Should().Throw<EntityValidationException>()
                 .WithMessage("Titulo should not be empty or null");            
@@ -181,10 +214,11 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
         [InlineData("ab")]
         public void UpdateErrorWhenTituloIsLessThan3Characters(string invalidTitulo)
         {
-            var tarefaValida = _tarefaTestFixture.GetValidTarefa();
+            var tarefaValida = _tarefaTestFixture.GetValidTarefa();            
 
             Action action =
-                () => tarefaValida.Update(invalidTitulo, tarefaValida.Descricao);
+                () => tarefaValida.Update(
+                    tarefaValida.IdUsuario.ToString(), invalidTitulo, tarefaValida.Descricao);
 
             action.Should().Throw<EntityValidationException>()
                 .WithMessage("Titulo should be at leats 3 characters long");     
@@ -195,10 +229,11 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
         public void UpdateErrorWhenTituloIsGreaterThan255Characters()
         {
             var tarefaValida = _tarefaTestFixture.GetValidTarefa();
-            var invalidTitulo = _tarefaTestFixture.Faker.Lorem.Letter(256);
+            var invalidTitulo = _tarefaTestFixture.Faker.Lorem.Letter(256);            
 
             Action action =
-                () => tarefaValida.Update(invalidTitulo, tarefaValida.Descricao);
+                () => tarefaValida.Update(
+                    tarefaValida.IdUsuario.ToString(), invalidTitulo, tarefaValida.Descricao);
 
             action.Should().Throw<EntityValidationException>()
                .WithMessage("Titulo should be less or equal 255 characters long");            
@@ -209,13 +244,14 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
         public void UpdateErrorWhenDescricaoIsGreaterThan10_000Characters()
         {
             var tarefaValida = _tarefaTestFixture.GetValidTarefa();
-            var invalidDescription = _tarefaTestFixture.Faker.Commerce.ProductDescription();
+            var invalidDescription = _tarefaTestFixture.Faker.Commerce.ProductDescription();            
 
             while (invalidDescription.Length <= 10_000)
                 invalidDescription = $"{invalidDescription} {_tarefaTestFixture.Faker.Commerce.ProductDescription()}";
 
             Action action =
-                () => new DomainEntity.Tarefa(tarefaValida.Titulo, invalidDescription);
+                () => new DomainEntity.Tarefa(
+                    tarefaValida.IdUsuario.ToString(), tarefaValida.Titulo, invalidDescription);
 
             action.Should().Throw<EntityValidationException>()
                .WithMessage("Descricao should be less or equal 10000 characters long");

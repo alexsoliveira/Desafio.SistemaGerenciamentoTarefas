@@ -15,6 +15,13 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.Common
         public Mock<IUnitOfWork> GetUnitOfWorkMock()
             => new();
 
+        public string GetValidTarefaIdUsuario()
+        {
+            var tarefaIdUsuario = Guid.NewGuid();
+
+            return tarefaIdUsuario.ToString();
+        }
+
         public string GetValidTarefaTitulo()
         {
             var tarefaName = "";
@@ -42,6 +49,7 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.Common
 
         public DomainEntity.Tarefa GetValidTarefa()
             => new(
+                GetValidTarefaIdUsuario(),
                 GetValidTarefaTitulo(),
                 GetValidTarefaDescricao()
             );

@@ -13,6 +13,13 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
         public TarefaTestFixture()
         : base() { }
 
+        public string GetValidTarefaIdUsuario()
+        {            
+            var tarefaIdUsuario = Guid.NewGuid();
+            
+            return tarefaIdUsuario.ToString();
+        }
+
         public string GetValidTarefaTitulo()
         {
             var tarefaName = "";
@@ -40,6 +47,7 @@ namespace Desafio.SisGerTarefas.UnitTests.Domain.Entity.Tarefa
 
         public DomainEntity.Tarefa GetValidTarefa()
         => new(
+            GetValidTarefaIdUsuario(),
             GetValidTarefaTitulo(),
             GetValidTarefaDescription()
         );

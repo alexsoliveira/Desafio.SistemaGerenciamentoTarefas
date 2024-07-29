@@ -12,9 +12,17 @@ namespace Desafio.SisGerTarefas.UnitTests.Application.Tarefa.CreateTarefa
     {
         public CreateTarefaInput GetInput()
         => new(
+            GetValidTarefaIdUsuario(),
             GetValidTarefaTitulo(),
             GetValidTarefaDescricao()
         );
+
+        public CreateTarefaInput GetInvalidInputIdUsuarioGuid()
+        {
+            var invalidInputIdUsuario = GetInput();
+            invalidInputIdUsuario.IdUsuario = Guid.Empty.ToString();
+            return invalidInputIdUsuario;
+        }
 
         public CreateTarefaInput GetInvalidInputShortTitulo()
         {
